@@ -2,7 +2,6 @@ package project6
 
 import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient
 import org.apache.avro.Schema
-
 import scala.io.Source
 
 object AvroSchemaRegister extends App {
@@ -30,11 +29,10 @@ object AvroSchemaRegister extends App {
       |]}""".stripMargin
   )
     .mkString
-  // 2. Parse schema
+
   val avro = new Schema.Parser().parse(Trip)
 
-  // 3. Create a client
   val srClient = new CachedSchemaRegistryClient("http://172.16.129.58:8081", 1)
-  srClient.register("enriched_trip-jay", avro)
+  srClient.register("enriched_trip-value", avro)
 
 }
